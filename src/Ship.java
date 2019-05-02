@@ -28,19 +28,7 @@ public class Ship extends MovingObject{
     Ship(BufferedImage img, int x, int y, int angle) {
         super(img, x, y, angle);
 
-        try {
-            System.out.println(System.getProperty("user.dir"));
-            /*
-             * note class loaders read files from the out folder (build folder in netbeans) and not the
-             * current working directory.
-             */
-            bulletImg = read(new File("bullet.png"));
-            //background = read(new File("Background.bmp"));
 
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
         this.speed = 2;
         this.rotationalSpeed = 2;
 
