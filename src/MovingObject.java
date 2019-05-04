@@ -42,7 +42,22 @@ public abstract class MovingObject extends GameObject {
         checkBorder();
     }
 
-    abstract public void checkBorder();
+    public void checkBorder(){
+        int rads = this.getAngle() % 360;
+        if (this.getY() < 0 && ((rads > 270 && rads < 360) || (rads > 0 && rads <= 90 ))) {
+            this.setY(GME.SCREEN_HEIGHT);
+        }
+        if (this.getY() > GME.SCREEN_HEIGHT && rads > 90 && rads < 270) {
+            this.setY(0);
+        }
+        if (this.getX() < 0 && rads > 180 && rads < 360 ) {
+            this.setX(GME.SCREEN_WIDTH);
+        }
+        if (this.getX() > GME.SCREEN_WIDTH && rads >= 0 && rads < 180) {
+            System.out.println("check");
+            this.setX(0);
+        }
+    }
 
 
     abstract public void update();
