@@ -47,13 +47,14 @@ public class ShipControl implements KeyListener {
         if (keyPressed == right) {
             this.s.toggleRightPressed();
         }
-        /*if (keyPressed == shoot){
-            this.t1.toggleShootPressed();
-        }*/
-
-
-
+        if (keyPressed == shoot) {
+            this.s.toggleLaunchPressed();
+        }
     }
+
+
+
+
 
     @Override
     public void keyReleased(KeyEvent ke) {
@@ -70,13 +71,13 @@ public class ShipControl implements KeyListener {
         if (keyReleased  == right) {
             this.s.unToggleRightPressed();
         }
-        if (keyReleased == shoot){
-            this.s.toggleShootPressed();
+        //if (keyReleased == shoot){
+            //this.s.toggleShootPressed();
             //this.t1.unToggleShootPressed();
         }
 
 
     }
-}
+
 
 

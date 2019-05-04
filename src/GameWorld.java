@@ -54,14 +54,14 @@ public class GameWorld {
 
     public void drawWorld(Graphics2D buffer){
         this.drawLayout(buffer);
-        /*for (int i = 0; i < worldList.size(); i++){
+        for (int i = 0; i < worldList.size(); i++){
             if(worldList.get(i).exists){
                 worldList.get(i).drawImage(buffer);
             }else{
                 worldList.remove(i);
 
             }
-        }*/
+        }
     }
     public Ship getShip(){
        return player;
@@ -75,7 +75,7 @@ public class GameWorld {
     public static ArrayList<GameObject> getWorldList(){return worldList;}
 
     public void drawLayout(Graphics2D buffer){
-        System.out.println("drawing layout");
+
         //buffer.clearRect(0,0, GME.SCREEN_WIDTH, GME.SCREEN_HEIGHT);
         buffer.drawImage(background, 0, 0, null);
     }

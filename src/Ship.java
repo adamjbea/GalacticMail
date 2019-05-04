@@ -22,7 +22,7 @@ public class Ship extends MovingObject{
     private boolean DownPressed;
     private boolean RightPressed;
     private boolean LeftPressed;
-    private boolean ShootPressed;
+    private boolean LaunchPressed;
 
 
     Ship(BufferedImage img, int x, int y, int angle) {
@@ -51,7 +51,7 @@ public class Ship extends MovingObject{
         this.LeftPressed = true;
     }
 
-    void toggleShootPressed() {this.ShootPressed = true;}
+    void toggleLaunchPressed() {this.LaunchPressed = true;}
 
     void unToggleUpPressed() {
         this.UpPressed = false;
@@ -69,17 +69,17 @@ public class Ship extends MovingObject{
         this.LeftPressed = false;
     }
 
-    void unToggleShootPressed() {this.ShootPressed = false;}
+    void unToggleShootPressed() {this.LaunchPressed = false;}
 
 
     @Override
     public void update() {
-        if (this.UpPressed) {
+        /*if (this.UpPressed) {
             this.moveForwards();
         }
         if (this.DownPressed) {
             this.moveBackwards();
-        }
+        }*/
 
         if (this.LeftPressed) {
             this.rotateLeft();
@@ -87,13 +87,13 @@ public class Ship extends MovingObject{
         if (this.RightPressed) {
             this.rotateRight();
         }
-        if (this.ShootPressed) {
-            this.unToggleShootPressed();
+        if (this.LaunchPressed) {
+            this.moveForwards();
 
         }
     }
 
-    private void shoot() {
+    private void launch() {
 
         }
 
@@ -102,26 +102,21 @@ public class Ship extends MovingObject{
     @Override
 
     public void checkBorder(){
-        if (this.getX() < 30) {
-            this.setX(30);
+        if (this.getX() <= 30) {
+            this.setX(GME.SCREEN_WIDTH);
         }
-        if (this.getX() >= GME.SCREEN_WIDTH - 88) {
-            this.setX(GME.SCREEN_WIDTH - 88);
+        if (this.getX() >= GME.SCREEN_WIDTH) {
+            this.setX(0);
         }
-        if (this.getY() < 30) {
-            this.setY(30);
+        if (this.getY() <= 30) {
+            this.setY(GME.SCREEN_HEIGHT);
         }
-        if (this.getY() >= GME.SCREEN_HEIGHT - 80) {
-            this.setY(GME.SCREEN_HEIGHT - 80);
+        if (this.getY() >= GME.SCREEN_HEIGHT) {
+            this.setY(0);
         }
     }
 
-    public Boolean getUpPressed(){
-        return this.UpPressed;
-    }
-    public Boolean getDownPressed(){
-        return this.DownPressed;
-    }
+
 
 
     @Override
