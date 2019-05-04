@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/src/Ship.java" line="105" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="3d34b0b1-cf6d-4b54-afe2-6757cfc2fcd9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GalacticMail/GameWorld.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GalacticMail/GameWorld.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GalacticMail/Ship.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GalacticMail/Ship.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GalacticMail/ShipControl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GalacticMail/ShipControl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameWorld.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameWorld.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ship.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ShipControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ShipControl.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,7 +19,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GME.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="93">
+            <state relative-caret-position="1292">
               <caret line="81" column="67" selection-start-line="81" selection-start-column="67" selection-end-line="81" selection-end-column="67" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -34,7 +31,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ShipControl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="929">
+            <state relative-caret-position="1326">
               <caret line="79" column="5" selection-start-line="79" selection-start-column="5" selection-end-line="79" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -70,7 +67,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GameWorld.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
+            <state relative-caret-position="1105">
               <caret line="77" selection-start-line="77" selection-end-line="77" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -82,7 +79,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GameObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-414">
+            <state>
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -93,12 +90,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Ship.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="331">
-              <caret line="104" column="29" selection-start-line="104" selection-start-column="29" selection-end-line="104" selection-end-column="29" />
+            <state relative-caret-position="348">
+              <caret line="105" column="82" selection-start-line="105" selection-start-column="82" selection-end-line="105" selection-end-column="82" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2313#2314#0" expanded="true" />
-                <element signature="e#2347#2348#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -107,7 +102,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MovingObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-51">
+            <state>
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -149,6 +144,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -165,14 +161,13 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556929927138" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556954479928" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -219,16 +214,17 @@
       <workItem from="1556744960371" duration="3375000" />
       <workItem from="1556840325487" duration="380000" />
       <workItem from="1556929060998" duration="868000" />
+      <workItem from="1556952862623" duration="1605000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4981000" />
+    <option name="totallyTimeSpent" value="6586000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26012793" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26279318" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -266,8 +262,18 @@
     <entry file="file://$PROJECT_DIR$/src/TileManager.java" />
     <entry file="file://$PROJECT_DIR$/src/GME.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="93">
+        <state relative-caret-position="1292">
           <caret line="81" column="67" selection-start-line="81" selection-start-column="67" selection-end-line="81" selection-end-column="67" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ShipControl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1326">
+          <caret line="79" column="5" selection-start-line="79" selection-start-column="5" selection-end-line="79" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -278,16 +284,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="30" selection-start-column="30" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameWorld.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="77" selection-start-line="77" selection-end-line="77" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -304,9 +300,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MovingObject.java">
+    <entry file="file://$PROJECT_DIR$/src/GameWorld.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-51">
+        <state relative-caret-position="1105">
+          <caret line="77" selection-start-line="77" selection-end-line="77" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -315,17 +312,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-414">
+        <state>
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ShipControl.java">
+    <entry file="file://$PROJECT_DIR$/src/MovingObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="929">
-          <caret line="79" column="5" selection-start-line="79" selection-start-column="5" selection-end-line="79" selection-end-column="5" />
+        <state>
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -334,12 +330,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Ship.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="104" column="29" selection-start-line="104" selection-start-column="29" selection-end-line="104" selection-end-column="29" />
+        <state relative-caret-position="348">
+          <caret line="105" column="82" selection-start-line="105" selection-start-column="82" selection-end-line="105" selection-end-column="82" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2313#2314#0" expanded="true" />
-            <element signature="e#2347#2348#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -102,17 +102,19 @@ public class Ship extends MovingObject{
     @Override
 
     public void checkBorder(){
-        if (this.getX() <= 30) {
-            this.setX(GME.SCREEN_WIDTH);
-        }
-        if (this.getX() >= GME.SCREEN_WIDTH) {
-            this.setX(0);
-        }
-        if (this.getY() <= 30) {
+        int rads = this.getAngle() % 360;
+        if (this.getY() < 0 && ((rads > 270 && rads < 360) || (rads > 0 && rads <= 90 ))) {
             this.setY(GME.SCREEN_HEIGHT);
         }
-        if (this.getY() >= GME.SCREEN_HEIGHT) {
+        if (this.getY() > GME.SCREEN_HEIGHT && rads > 90 && rads < 270) {
             this.setY(0);
+        }
+        if (this.getX() < 0 && rads > 180 && rads < 360 ) {
+            this.setX(GME.SCREEN_WIDTH);
+        }
+        if (this.getX() > GME.SCREEN_WIDTH && rads >= 0 && rads < 180) {
+            System.out.println("check");
+            this.setX(0);
         }
     }
 
