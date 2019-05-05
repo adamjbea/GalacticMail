@@ -31,7 +31,7 @@ public class GameWorld {
              * note class loaders read files from the out folder (build folder in netbeans) and not the
              * current working directory.
              */
-            shipImg = read(new File("newTank.png"));
+            shipImg = read(new File("shipFlying.png"));
             background = read(new File("Background.bmp"));
             System.out.println("images loaded");
 
@@ -43,7 +43,7 @@ public class GameWorld {
 
 
 
-        player = new Ship(shipImg, GME.SCREEN_WIDTH/4 - 25, GME.SCREEN_HEIGHT/4 - 25, 0);
+        player = new Ship(shipImg, GME.SCREEN_WIDTH/2 - 24, GME.SCREEN_HEIGHT/2 - 24, 0);
 
 
         this.addGameObject(player);

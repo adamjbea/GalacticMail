@@ -29,8 +29,8 @@ public class Ship extends MovingObject{
         super(img, x, y, angle);
 
 
-        this.speed = 2;
-        this.rotationalSpeed = 2;
+        this.speed = 3;
+        this.rotationalSpeed = 1;
 
     }
 
