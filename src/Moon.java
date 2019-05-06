@@ -3,12 +3,20 @@ import java.awt.image.BufferedImage;
 
 public class Moon extends MovingObject {
 
-    private boolean has_landed = false;
+    private boolean ship_launched = false;
+    private boolean starting_moon = false;
 
 
-    public Moon(BufferedImage img, int x, int y){
+    public Moon(BufferedImage img, int x, int y, int angle){
 
-        super(img, x, y, 0);
+        super(img, x, y, angle);
+        this.speed = 1;
+
+    }
+
+    public void set_starting_moon(boolean set){
+
+        this.starting_moon = set;
 
     }
 
@@ -19,11 +27,13 @@ public class Moon extends MovingObject {
 
     public void update(){
 
-        if (!(has_landed)){
-            this.moveForwards();
-        }else{
-            this.setExists(false);
-        }
+
+            if(!(starting_moon)) {
+
+                this.moveForwards();
+
+            }
+
 
     }
 

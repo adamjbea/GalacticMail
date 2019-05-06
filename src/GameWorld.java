@@ -16,10 +16,11 @@ public class GameWorld {
 
             private Ship player;
             private BufferedImage shipImg;
+            private BufferedImage moonImg;
             private BufferedImage background;
 
 
-            private static ArrayList<GameObject> worldList;
+            private ArrayList<GameObject> worldList;
 
     public GameWorld(){
 
@@ -33,6 +34,7 @@ public class GameWorld {
              */
             shipImg = read(new File("shipFlying.png"));
             background = read(new File("Background.bmp"));
+            moonImg = read(new File("moon01.png"));
             System.out.println("images loaded");
 
 
@@ -47,6 +49,8 @@ public class GameWorld {
 
 
         this.addGameObject(player);
+        this.place_player();
+        this.set_up_level();
 
     }
 
@@ -68,16 +72,32 @@ public class GameWorld {
 
     }
 
-    public static void addGameObject(GameObject object){
-        worldList.add(object);
+    public void addGameObject(GameObject object){
+        worldList.add(0, object);
     }
 
-    public static ArrayList<GameObject> getWorldList(){return worldList;}
+    public ArrayList<GameObject> getWorldList(){return worldList;}
 
     public void drawLayout(Graphics2D buffer){
 
         //buffer.clearRect(0,0, GME.SCREEN_WIDTH, GME.SCREEN_HEIGHT);
         buffer.drawImage(background, 0, 0, null);
+    }
+
+    public void place_player(){
+        Moon starter = new Moon(moonImg, GME.SCREEN_WIDTH/2 - 32, GME.SCREEN_HEIGHT/2 - 32, 0);
+        starter.set_starting_moon(true);
+        player.set_landed_moon(starter);
+        this.addGameObject(starter);
+    }
+
+    public void set_up_level(){
+        Random rand = new Random();
+        Moon temp;
+        for(int i = 0; i < rand.nextInt(10) + 1; i++){
+            temp = new Moon(moonImg, rand.nextInt(GME.SCREEN_WIDTH - 32) + 1, rand.nextInt(GME.SCREEN_HEIGHT - 32) + 1, rand.nextInt(359));
+            this.addGameObject(temp);
+        }
     }
 
 

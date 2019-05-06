@@ -23,6 +23,7 @@ public class Ship extends MovingObject{
     private boolean RightPressed;
     private boolean LeftPressed;
     private boolean LaunchPressed;
+    private Moon landed_moon = null;
 
 
     Ship(BufferedImage img, int x, int y, int angle) {
@@ -89,13 +90,16 @@ public class Ship extends MovingObject{
         }
         if (this.LaunchPressed) {
             this.moveForwards();
+            if (this.landed_moon != null){
+                this.landed_moon.setExists(false);
+            }
 
         }
     }
 
-    private void launch() {
-
-        }
+   public void set_landed_moon(Moon moon){
+        this.landed_moon = moon;
+   }
 
 
     @Override

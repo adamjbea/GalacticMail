@@ -8,8 +8,8 @@ import java.io.IOException;
 public class GME extends JPanel {
 
 //these are the constant variables that define the world space and then the screen viewing space
-public static final int SCREEN_WIDTH = 640;
-public static final int SCREEN_HEIGHT = 480;
+public static final int SCREEN_WIDTH = 800;
+public static final int SCREEN_HEIGHT = 600;
 
 
 //every game engine has a game world and two players
@@ -41,7 +41,9 @@ public static void main(String[] args) {
                         //update the tanks
                         //in future games will have a more abstracted way of doing this to account
                         //for multiple objects with multiple update needs
-                        gmex.player.getShip().update();
+                        for (GameObject o : gmex.gameWorld.getWorldList()){
+                                o.update();
+                        }
                         //collision detector checks for collisions.
                         // could be rolled up into the update() function possibly
                         //gmex.CD.checkCollision();
