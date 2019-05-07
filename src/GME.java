@@ -40,18 +40,24 @@ public static void main(String[] args) {
         gmex.init();
         try {
 
-                while (!(gmex.GameOver)) {
+                while (true) {
                         gmex.gameWorld.update();
                         gmex.CD.detect();
                         if (gmex.CD.just_landed){
                                 gmex.player.add_score(100);
                         }
-                        if (gmex.player.getShip().get_landed() && !(gmex.player.getShip().get_landed_moon().get_starting_moon()) && framecount % 10 == 0){
+                        if (gmex.player.getShip().get_landed() && !(gmex.player.getShip().get_landed_moon().get_starting_moon()) && framecount % 10 == 0 && !(gmex.get_level_won())){
                                 gmex.player.score_decay();
                         }
                         if (gmex.gameWorld.ship_death){
                                 gmex.gameWorld.place_player();
                                 gmex.gameWorld.ship_death = false;
+                                gmex.player.loseLife();
+                                if (gmex.player.getLives()==0){
+                                        System.out.println("made it");
+                                        gmex.GameOver = true;
+                                        System.out.println("Game Over: " + gmex.GameOver);
+                                }
                         }
                         if (Moon.get_count() == 1 && gmex.player.getShip().get_landed()){
                                 gmex.level_won = true;
@@ -66,7 +72,7 @@ public static void main(String[] args) {
 }
 
 private void init() {
-        this.jf = new JFrame("Tank Rotation");
+        this.jf = new JFrame("Galactic Mail");
         this.world = new BufferedImage(SCREEN_WIDTH, SCREEN_HEIGHT, BufferedImage.TYPE_INT_RGB);
 
         gameWorld = new GameWorld();
@@ -104,18 +110,26 @@ public void paintComponent(Graphics g) {
         //each object has its own drawImage function
         gameWorld.drawWorld(buffer);
         g2.drawImage(world, 0, 0, null);
+        for (int i = 0; i < player.getLives(); i++){
+                g2.drawImage(gameWorld.get_ship_landed_img(), 20 + 48*i, 20, null);
+        }
         if (!(this.level_won)) {
                 g2.setFont(new Font("TimesRoman", Font.PLAIN, 35));
                 g2.drawString(("Score: $" + this.player.get_score()), SCREEN_WIDTH / 2 - 50, 50);
         }
         else{
                 g2.setFont(new Font("TimesRoman", Font.PLAIN, 50));
-                g2.drawString(("DELIVERY COMPLETE"), SCREEN_WIDTH / 2 - 150, 300);
-                if (framecount % 100 == 0){
-                        g2.setFont(new Font("TimesRoman", Font.PLAIN, 25));
-                        g2.drawString(("Press Space To Continue"), SCREEN_WIDTH / 2 - 100, 350);
+                g2.drawString(("DELIVERY COMPLETE"), SCREEN_WIDTH / 4 - 45, 300);
+                g2.setFont(new Font("TimesRoman", Font.PLAIN, 25));
+                g2.drawString(("Press Space To Continue"), SCREEN_WIDTH / 4 + 75, 350);
 
-                }
+
+        }
+        if (this.GameOver){
+                g2.setFont(new Font("TimesRoman", Font.PLAIN, 50));
+                g2.drawString(("GAME OVER"), SCREEN_WIDTH / 4 + 50, 300);
+                g2.setFont(new Font("TimesRoman", Font.PLAIN, 25));
+                g2.drawString(("Press Space To Restart"), SCREEN_WIDTH / 4 + 75, 350);
         }
 
 
@@ -142,6 +156,11 @@ public void set_next_level(){
         this.gameWorld.set_up_level();
 
 
+}
+
+public void start_game(){
+        this.set_next_level();
+        this.player.reset_player();
 }
 
 }

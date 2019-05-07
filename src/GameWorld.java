@@ -101,6 +101,7 @@ public class GameWorld {
         player.set_landed_moon(starter);
         this.addGameObject(starter);
         player.setExists(true);
+        player.unToggleLaunchPressed();
     }
 
     public void set_up_level(){
@@ -113,10 +114,14 @@ public class GameWorld {
             temp_moon = new Moon(moonImg, rand.nextInt(GME.SCREEN_WIDTH - 32) + 1, rand.nextInt(GME.SCREEN_HEIGHT - 32) + 1, rand.nextInt(359));
             this.addGameObject(temp_moon);
         }
-        for(int i = 0; i < rand.nextInt(15) + 5; i++){
+        for(int i = 0; i < rand.nextInt(10) + 5; i++){
             temp_asteroid = new Asteroid(asteroidImg, rand.nextInt(GME.SCREEN_WIDTH - 32) + 1, rand.nextInt(GME.SCREEN_HEIGHT - 32) + 1, rand.nextInt(359));
             this.addGameObject(temp_asteroid);
         }
+    }
+
+    public BufferedImage get_ship_landed_img(){
+        return this.ship_landed_img;
     }
 
 

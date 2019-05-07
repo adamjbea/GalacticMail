@@ -34,8 +34,13 @@ public class Player {
             this.lives--;
         }else{
             this.lives = 0;
-            this.getShip().setExists(false);
+
         }
+    }
+
+    public void reset_player(){
+        this.lives = 3;
+        this.score = 0;
     }
 
     public void add_score(int score){

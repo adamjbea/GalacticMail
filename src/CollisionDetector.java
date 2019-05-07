@@ -2,8 +2,8 @@ import java.awt.*;
 
 public class CollisionDetector {
 
-    GameWorld gameWorld;
-    Player player;
+    private GameWorld gameWorld;
+    private Player player;
     Boolean just_landed = false;
     public CollisionDetector(GameWorld gameWorld, Player player){
         this.gameWorld = gameWorld;

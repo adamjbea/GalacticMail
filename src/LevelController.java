@@ -22,7 +22,12 @@ public class LevelController implements KeyListener {
             if (keyPressed == accept){
                 engine.set_next_level();
                 engine.set_level_won(false);
-                System.out.println("level controller pressed");
+            }
+        }
+        if (engine.GameOver){
+            if (keyPressed == accept) {
+                engine.start_game();
+                engine.GameOver = false;
             }
         }
 
