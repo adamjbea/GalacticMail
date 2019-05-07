@@ -105,17 +105,18 @@ public class GameWorld {
     }
 
     public void set_up_level(){
+        Moon.reset_count();
         this.addGameObject(player);
         this.place_player();
         Random rand = new Random();
         Moon temp_moon;
         Asteroid temp_asteroid;
         for(int i = 0; i < rand.nextInt(10) + 1; i++){
-            temp_moon = new Moon(moonImg, rand.nextInt(GME.SCREEN_WIDTH - 32) + 1, rand.nextInt(GME.SCREEN_HEIGHT - 32) + 1, rand.nextInt(359));
+            temp_moon = new Moon(moonImg, rand.nextInt(GME.SCREEN_WIDTH - 50) + 1, rand.nextInt(GME.SCREEN_HEIGHT - 50) + 1, rand.nextInt(359));
             this.addGameObject(temp_moon);
         }
         for(int i = 0; i < rand.nextInt(10) + 5; i++){
-            temp_asteroid = new Asteroid(asteroidImg, rand.nextInt(GME.SCREEN_WIDTH - 32) + 1, rand.nextInt(GME.SCREEN_HEIGHT - 32) + 1, rand.nextInt(359));
+            temp_asteroid = new Asteroid(asteroidImg, rand.nextInt(GME.SCREEN_WIDTH - 50) + 1, rand.nextInt(GME.SCREEN_HEIGHT - 50) + 1, rand.nextInt(359));
             this.addGameObject(temp_asteroid);
         }
     }

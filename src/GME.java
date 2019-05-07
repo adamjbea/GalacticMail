@@ -115,7 +115,7 @@ public void paintComponent(Graphics g) {
         }
         if (!(this.level_won)) {
                 g2.setFont(new Font("TimesRoman", Font.PLAIN, 35));
-                g2.drawString(("Score: $" + this.player.get_score()), SCREEN_WIDTH / 2 - 50, 50);
+                g2.drawString(("Score: $" + this.player.get_score()), SCREEN_WIDTH / 2 - 75, 50);
         }
         else{
                 g2.setFont(new Font("TimesRoman", Font.PLAIN, 50));
@@ -151,7 +151,6 @@ public void set_level_won(Boolean bool){
 }
 
 public void set_next_level(){
-
         this.gameWorld.getWorldList().clear();
         this.gameWorld.set_up_level();
 

@@ -58,4 +58,6 @@ public class Moon extends MovingObject {
         count--;
     }
 
+    public static void reset_count(){count = 0;}
+
 }
