@@ -27,6 +27,7 @@ public class ShipControl implements KeyListener {
 
     }
 
+
     @Override
     public void keyTyped(KeyEvent ke) {
 
@@ -60,10 +61,9 @@ public class ShipControl implements KeyListener {
             this.s.unToggleRightPressed();
         }
         //if (keyReleased == shoot){
-            //this.s.toggleShootPressed();
-            //this.t1.unToggleShootPressed();
-        }
-
+        //this.s.toggleShootPressed();
+        //this.t1.unToggleShootPressed();
+    }
 
     }
 

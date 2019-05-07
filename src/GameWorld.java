@@ -53,11 +53,6 @@ public class GameWorld {
 
         player = new Ship(ship_flying_img, GME.SCREEN_WIDTH/2 - 24, GME.SCREEN_HEIGHT/2 - 24, 0, ship_landed_img);
 
-
-        this.addGameObject(player);
-        this.place_player();
-        this.set_up_level();
-
     }
 
     public void update(){
@@ -109,6 +104,8 @@ public class GameWorld {
     }
 
     public void set_up_level(){
+        this.addGameObject(player);
+        this.place_player();
         Random rand = new Random();
         Moon temp_moon;
         Asteroid temp_asteroid;

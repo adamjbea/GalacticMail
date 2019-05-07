@@ -43,7 +43,9 @@ public class Player {
     }
 
     public void score_decay(){
-        this.score -= 1;
+        if (score != 0) {
+            this.score -= 1;
+        }
     }
 
     public int get_score(){

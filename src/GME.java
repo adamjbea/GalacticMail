@@ -41,9 +41,6 @@ public static void main(String[] args) {
         try {
 
                 while (!(gmex.GameOver)) {
-                        //update the tanks
-                        //in future games will have a more abstracted way of doing this to account
-                        //for multiple objects with multiple update needs
                         gmex.gameWorld.update();
                         gmex.CD.detect();
                         if (gmex.CD.just_landed){
@@ -60,36 +57,31 @@ public static void main(String[] args) {
                                 gmex.level_won = true;
                         }
                         gmex.repaint();
-                        //update the frame count, which is used for Bullet range
                         framecount++;
                         Thread.sleep(1000 / 144);
-        /*if (trex.player1.getLives() == 0 || trex.player2.getLives() == 0) {
-        trex.GameOver = true;
-        }*/
         }
         } catch (InterruptedException ignored) {
-
         }
 
-                }
-
-
+}
 
 private void init() {
         this.jf = new JFrame("Tank Rotation");
         this.world = new BufferedImage(SCREEN_WIDTH, SCREEN_HEIGHT, BufferedImage.TYPE_INT_RGB);
 
         gameWorld = new GameWorld();
+        this.gameWorld.set_up_level();
         player = new Player(gameWorld.getShip());
 
         CD = new CollisionDetector(gameWorld, player);
 
         ShipControl sc = new ShipControl(player.getShip(), KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT, KeyEvent.VK_SPACE);
-
+        LevelController kc = new LevelController(this, KeyEvent.VK_SPACE);
         this.jf.setLayout(new BorderLayout());
         this.jf.add(this);
 
         this.jf.addKeyListener(sc);
+        this.jf.addKeyListener(kc);
 
         this.jf.setSize(GME.SCREEN_WIDTH + 1, GME.SCREEN_HEIGHT + 1);
         this.jf.setResizable(false);
@@ -131,6 +123,26 @@ public void paintComponent(Graphics g) {
 
 
         }
+
+ public Boolean get_level_won(){
+
+        return this.level_won;
+
+}
+
+public void set_level_won(Boolean bool){
+
+        this.level_won = bool;
+
+}
+
+public void set_next_level(){
+
+        this.gameWorld.getWorldList().clear();
+        this.gameWorld.set_up_level();
+
+
+}
 
 }
 
