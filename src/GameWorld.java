@@ -15,7 +15,8 @@ import static javax.imageio.ImageIO.read;
 public class GameWorld {
 
             private Ship player;
-            private BufferedImage shipImg;
+            private BufferedImage ship_flying_img;
+            private BufferedImage ship_landed_img;
             private BufferedImage moonImg;
             private BufferedImage background;
             private BufferedImage asteroidImg;
@@ -35,7 +36,8 @@ public class GameWorld {
              * note class loaders read files from the out folder (build folder in netbeans) and not the
              * current working directory.
              */
-            shipImg = read(new File("shipFlying.png"));
+            ship_flying_img = read(new File("shipFlying.png"));
+            ship_landed_img = read(new File("shipLanded.png"));
             background = read(new File("Background.bmp"));
             moonImg = read(new File("moon01.png"));
             asteroidImg = read(new File("asteroid.png"));
@@ -49,7 +51,7 @@ public class GameWorld {
 
 
 
-        player = new Ship(shipImg, GME.SCREEN_WIDTH/2 - 24, GME.SCREEN_HEIGHT/2 - 24, 0);
+        player = new Ship(ship_flying_img, GME.SCREEN_WIDTH/2 - 24, GME.SCREEN_HEIGHT/2 - 24, 0, ship_landed_img);
 
 
         this.addGameObject(player);
@@ -73,6 +75,9 @@ public class GameWorld {
             if(worldList.get(i).exists){
                 worldList.get(i).drawImage(buffer);
             }else{
+                if (worldList.get(i) instanceof Moon){
+                    Moon.reduce_count();
+                }
                 worldList.remove(i);
 
             }

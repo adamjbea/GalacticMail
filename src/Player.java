@@ -38,5 +38,16 @@ public class Player {
         }
     }
 
+    public void add_score(int score){
+        this.score += score;
+    }
+
+    public void score_decay(){
+        this.score -= 1;
+    }
+
+    public int get_score(){
+        return this.score;
+    }
 
 }

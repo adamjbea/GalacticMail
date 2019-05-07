@@ -20,10 +20,15 @@ public class Ship extends MovingObject{
     private boolean LaunchPressed;
     private Moon landed_moon;
     private boolean landed;
+    private boolean on_starter_moon;
+    private BufferedImage landedImg;
+    private BufferedImage flyingImg;
 
 
-    Ship(BufferedImage img, int x, int y, int angle) {
-        super(img, x, y, angle);
+    Ship(BufferedImage flyingImg, int x, int y, int angle, BufferedImage landedImg) {
+        super(flyingImg, x, y, angle);
+        this.landedImg = landedImg;
+        this.flyingImg = flyingImg;
 
 
         this.speed = 2;
@@ -55,12 +60,11 @@ public class Ship extends MovingObject{
     @Override
     public void update() {
         if (this.landed){
-            System.out.println("made it to landed");
+            this.img = this.landedImg;
             this.setX(this.landed_moon.getX() + 9);
             this.setY(this.landed_moon.getY() + 3);
         }
         if (!(this.landed)){
-            System.out.println("made it to launched)");
             this.moveForwards();
         }
         if (this.LeftPressed) {
@@ -70,11 +74,13 @@ public class Ship extends MovingObject{
             this.rotateRight();
         }
         if (this.LaunchPressed) {
+                this.img = flyingImg;
                 this.landed_moon.setExists(false);
                 this.landed = false;
                 this.unToggleLaunchPressed();
-                System.out.println("launch pressed");
-                System.out.println("landed: " + this.landed);
+               if (this.on_starter_moon){
+                   this.on_starter_moon = false;
+               }
         }
     }
 
@@ -92,6 +98,10 @@ public class Ship extends MovingObject{
 
     public Boolean get_landed(){
         return this.landed;
+    }
+
+    public Moon get_landed_moon(){
+        return this.landed_moon;
     }
 
 

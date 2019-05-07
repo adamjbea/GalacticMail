@@ -21,6 +21,9 @@ private BufferedImage world;
 private Graphics2D buffer;
 private JFrame jf;
 
+public static int framecount = 0;
+private Boolean level_won = false;
+
 
 
 
@@ -28,7 +31,7 @@ public boolean GameOver = false;
 
 private CollisionDetector CD;
 //just used for bullet range but could be used for enemy placement and game timeline effects
-public static int framecount = 0;
+
 
 
 public static void main(String[] args) {
@@ -43,11 +46,19 @@ public static void main(String[] args) {
                         //for multiple objects with multiple update needs
                         gmex.gameWorld.update();
                         gmex.CD.detect();
-                        //collision detector checks for collisions.
-                        // could be rolled up into the update() function possibly
-                        //gmex.CD.checkCollision();
-
-                        //repaint the JPanel that is our game
+                        if (gmex.CD.just_landed){
+                                gmex.player.add_score(100);
+                        }
+                        if (gmex.player.getShip().get_landed() && !(gmex.player.getShip().get_landed_moon().get_starting_moon()) && framecount % 10 == 0){
+                                gmex.player.score_decay();
+                        }
+                        if (gmex.gameWorld.ship_death){
+                                gmex.gameWorld.place_player();
+                                gmex.gameWorld.ship_death = false;
+                        }
+                        if (Moon.get_count() == 1 && gmex.player.getShip().get_landed()){
+                                gmex.level_won = true;
+                        }
                         gmex.repaint();
                         //update the frame count, which is used for Bullet range
                         framecount++;
@@ -71,7 +82,7 @@ private void init() {
         gameWorld = new GameWorld();
         player = new Player(gameWorld.getShip());
 
-        CD = new CollisionDetector(gameWorld);
+        CD = new CollisionDetector(gameWorld, player);
 
         ShipControl sc = new ShipControl(player.getShip(), KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT, KeyEvent.VK_SPACE);
 
@@ -88,7 +99,7 @@ private void init() {
         this.jf.setVisible(true);
 
         this.setBackground(Color.black);
-        this.setForeground(Color.GREEN);
+        this.setForeground(Color.WHITE);
 
         }
 
@@ -100,7 +111,20 @@ public void paintComponent(Graphics g) {
         //calls the function to draw every object to the GameWorld
         //each object has its own drawImage function
         gameWorld.drawWorld(buffer);
-        g2.drawImage(world, 0, 0,  null);
+        g2.drawImage(world, 0, 0, null);
+        if (!(this.level_won)) {
+                g2.setFont(new Font("TimesRoman", Font.PLAIN, 35));
+                g2.drawString(("Score: $" + this.player.get_score()), SCREEN_WIDTH / 2 - 50, 50);
+        }
+        else{
+                g2.setFont(new Font("TimesRoman", Font.PLAIN, 50));
+                g2.drawString(("DELIVERY COMPLETE"), SCREEN_WIDTH / 2 - 150, 300);
+                if (framecount % 100 == 0){
+                        g2.setFont(new Font("TimesRoman", Font.PLAIN, 25));
+                        g2.drawString(("Press Space To Continue"), SCREEN_WIDTH / 2 - 100, 350);
+
+                }
+        }
 
 
 
@@ -108,6 +132,5 @@ public void paintComponent(Graphics g) {
 
         }
 
-
-        }
+}
 

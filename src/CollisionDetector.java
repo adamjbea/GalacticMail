@@ -3,13 +3,15 @@ import java.awt.*;
 public class CollisionDetector {
 
     GameWorld gameWorld;
-    Boolean ship_death = false;
-
-    public CollisionDetector(GameWorld gameWorld){
+    Player player;
+    Boolean just_landed = false;
+    public CollisionDetector(GameWorld gameWorld, Player player){
         this.gameWorld = gameWorld;
+        this.player = player;
     }
 
     public void detect(){
+        this.just_landed = false;
         Ship ship = this.gameWorld.getShip();
         Rectangle ship_box = new Rectangle(ship.getX(), ship.getY(), ship.getImg().getWidth(), ship.getImg().getHeight());
         Rectangle obj_box;
@@ -20,10 +22,11 @@ public class CollisionDetector {
                     if (!(ship.get_landed())) {
                         if (o instanceof Moon && o.exists) {
                             ship.set_landed_moon((Moon) o);
+                            this.just_landed = true;
                         }
                         if (o instanceof Asteroid) {
                             o.setExists(false);
-                            this.ship_death = true;
+                            this.gameWorld.ship_death = true;
                             //ship.
                         }
 
@@ -33,11 +36,7 @@ public class CollisionDetector {
             }
         }
 
-        if (ship_death){
-            this.gameWorld.place_player();
-            this.ship_death = false;
-        }
-
     }
+
 
 }
