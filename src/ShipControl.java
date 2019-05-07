@@ -14,16 +14,16 @@ public class ShipControl implements KeyListener {
     private final int down;
     private final int right;
     private final int left;
-    private final int shoot;
+    private final int launch;
 
 
-    public ShipControl(Ship s, int up, int down, int left, int right, int shoot) {
+    public ShipControl(Ship s, int up, int down, int left, int right, int launch) {
         this.s = s;
         this.up = up;
         this.down = down;
         this.right = right;
         this.left = left;
-        this.shoot = shoot;
+        this.launch = launch;
 
     }
 
@@ -35,19 +35,13 @@ public class ShipControl implements KeyListener {
     @Override
     public void keyPressed(KeyEvent ke) {
         int keyPressed = ke.getKeyCode();
-        if (keyPressed == up) {
-            this.s.toggleUpPressed();
-        }
-        if (keyPressed == down) {
-            this.s.toggleDownPressed();
-        }
         if (keyPressed == left) {
             this.s.toggleLeftPressed();
         }
         if (keyPressed == right) {
             this.s.toggleRightPressed();
         }
-        if (keyPressed == shoot) {
+        if (keyPressed == launch) {
             this.s.toggleLaunchPressed();
         }
     }
@@ -59,12 +53,6 @@ public class ShipControl implements KeyListener {
     @Override
     public void keyReleased(KeyEvent ke) {
         int keyReleased = ke.getKeyCode();
-        if (keyReleased  == up) {
-            this.s.unToggleUpPressed();
-        }
-        if (keyReleased == down) {
-            this.s.unToggleDownPressed();
-        }
         if (keyReleased  == left) {
             this.s.unToggleLeftPressed();
         }

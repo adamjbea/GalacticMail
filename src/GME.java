@@ -41,9 +41,8 @@ public static void main(String[] args) {
                         //update the tanks
                         //in future games will have a more abstracted way of doing this to account
                         //for multiple objects with multiple update needs
-                        for (GameObject o : gmex.gameWorld.getWorldList()){
-                                o.update();
-                        }
+                        gmex.gameWorld.update();
+                        gmex.CD.detect();
                         //collision detector checks for collisions.
                         // could be rolled up into the update() function possibly
                         //gmex.CD.checkCollision();
@@ -72,9 +71,9 @@ private void init() {
         gameWorld = new GameWorld();
         player = new Player(gameWorld.getShip());
 
-        CD = new CollisionDetector();
+        CD = new CollisionDetector(gameWorld);
 
-        ShipControl sc = new ShipControl(player.getShip(), KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT, KeyEvent.VK_ENTER);
+        ShipControl sc = new ShipControl(player.getShip(), KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT, KeyEvent.VK_SPACE);
 
         this.jf.setLayout(new BorderLayout());
         this.jf.add(this);

@@ -3,7 +3,6 @@ import java.awt.image.BufferedImage;
 
 public class Moon extends MovingObject {
 
-    private boolean ship_launched = false;
     private boolean starting_moon = false;
 
 
