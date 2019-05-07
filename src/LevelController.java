@@ -30,6 +30,12 @@ public class LevelController implements KeyListener {
                 engine.GameOver = false;
             }
         }
+        if (!(engine.get_game_start())){
+            if (keyPressed == accept) {
+                engine.start_game();
+                engine.set_game_start(true);
+            }
+        }
 
     }
 

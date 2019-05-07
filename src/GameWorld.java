@@ -106,8 +106,6 @@ public class GameWorld {
 
     public void set_up_level(){
         Moon.reset_count();
-        this.addGameObject(player);
-        this.place_player();
         Random rand = new Random();
         Moon temp_moon;
         Asteroid temp_asteroid;
@@ -120,6 +118,7 @@ public class GameWorld {
             this.addGameObject(temp_asteroid);
         }
     }
+
 
     public BufferedImage get_ship_landed_img(){
         return this.ship_landed_img;

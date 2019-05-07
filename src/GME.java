@@ -23,6 +23,7 @@ private JFrame jf;
 
 public static int framecount = 0;
 private Boolean level_won = false;
+private Boolean game_start = false;
 
 
 
@@ -43,6 +44,7 @@ public static void main(String[] args) {
                 while (true) {
                         gmex.gameWorld.update();
                         gmex.CD.detect();
+
                         if (gmex.CD.just_landed){
                                 gmex.player.add_score(100);
                         }
@@ -113,11 +115,11 @@ public void paintComponent(Graphics g) {
         for (int i = 0; i < player.getLives(); i++){
                 g2.drawImage(gameWorld.get_ship_landed_img(), 20 + 48*i, 20, null);
         }
-        if (!(this.level_won)) {
+        if (!(this.level_won) && this.game_start) {
                 g2.setFont(new Font("TimesRoman", Font.PLAIN, 35));
                 g2.drawString(("Score: $" + this.player.get_score()), SCREEN_WIDTH / 2 - 75, 50);
         }
-        else{
+        if(this.level_won){
                 g2.setFont(new Font("TimesRoman", Font.PLAIN, 50));
                 g2.drawString(("DELIVERY COMPLETE"), SCREEN_WIDTH / 4 - 45, 300);
                 g2.setFont(new Font("TimesRoman", Font.PLAIN, 25));
@@ -130,6 +132,15 @@ public void paintComponent(Graphics g) {
                 g2.drawString(("GAME OVER"), SCREEN_WIDTH / 4 + 50, 300);
                 g2.setFont(new Font("TimesRoman", Font.PLAIN, 25));
                 g2.drawString(("Press Space To Restart"), SCREEN_WIDTH / 4 + 75, 350);
+        }
+
+        if (!(game_start)){
+
+                g2.setFont(new Font("TimesRoman", Font.PLAIN, 50));
+                g2.drawString(("GALACTIC MAIL"), SCREEN_WIDTH / 4, 300);
+                g2.setFont(new Font("TimesRoman", Font.PLAIN, 25));
+                g2.drawString(("Press Space To Start"), SCREEN_WIDTH / 4 + 50, 350);
+
         }
 
 
@@ -152,14 +163,22 @@ public void set_level_won(Boolean bool){
 
 public void set_next_level(){
         this.gameWorld.getWorldList().clear();
+        this.gameWorld.addGameObject(this.gameWorld.getShip());
         this.gameWorld.set_up_level();
-
-
+        this.gameWorld.place_player();
 }
 
 public void start_game(){
-        this.set_next_level();
         this.player.reset_player();
+        this.set_next_level();
+}
+
+public Boolean get_game_start(){
+        return this.game_start;
+}
+
+public void set_game_start(Boolean bool){
+        this.game_start = bool;
 }
 
 }
