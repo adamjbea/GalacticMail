@@ -132,10 +132,11 @@ public void paintComponent(Graphics g) {
         //each object has its own drawImage function
         gameWorld.drawWorld(buffer);
         g2.drawImage(world, 0, 0, null);
-        for (int i = 0; i < player.getLives(); i++){
-                g2.drawImage(gameWorld.get_ship_landed_img(), 20 + 48*i, 20, null);
-        }
+
         if (!(this.level_won) && this.game_start) {
+                for (int i = 0; i < player.getLives(); i++){
+                        g2.drawImage(gameWorld.get_ship_landed_img(), 20 + 48*i, 20, null);
+                }
                 g2.setFont(new Font("TimesRoman", Font.PLAIN, 35));
                 g2.drawString(("Score: $" + this.player.get_score()), SCREEN_WIDTH / 2 - 75, 50);
         }
