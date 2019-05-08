@@ -11,7 +11,7 @@ public class Asteroid extends MovingObject {
         super(img, x, y, angle);
         Random rand = new Random();
         this.rotationalSpeed = rand.nextInt(2) + 1;
-        this.speed = rand.nextInt(2) + 1;
+        this.speed = rand.nextInt(1) + 1;
     }
 
     public void update(){

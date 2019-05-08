@@ -3,7 +3,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+
+import static javax.imageio.ImageIO.read;
 
 public class GME extends JPanel {
 
@@ -24,6 +27,7 @@ private JFrame jf;
 public static int framecount = 0;
 private Boolean level_won = false;
 private Boolean game_start = false;
+private BufferedImage title_img;
 
 
 
@@ -101,6 +105,22 @@ private void init() {
         this.setBackground(Color.black);
         this.setForeground(Color.WHITE);
 
+        try {
+                BufferedImage tmp;
+                System.out.println(System.getProperty("user.dir"));
+                /*
+                 * note class loaders read files from the out folder (build folder in netbeans) and not the
+                 * current working directory.
+                 */
+                title_img = read(new File("title.png"));
+                System.out.println("images loaded");
+
+
+        } catch (IOException ex) {
+                System.out.println("yup cant read that shit");
+                System.out.println(ex.getMessage());
+        }
+
         }
 
 @Override
@@ -135,11 +155,9 @@ public void paintComponent(Graphics g) {
         }
 
         if (!(game_start)){
-
-                g2.setFont(new Font("TimesRoman", Font.PLAIN, 50));
-                g2.drawString(("GALACTIC MAIL"), SCREEN_WIDTH / 4, 300);
-                g2.setFont(new Font("TimesRoman", Font.PLAIN, 25));
-                g2.drawString(("Press Space To Start"), SCREEN_WIDTH / 4 + 50, 350);
+                g2.setFont(new Font("TimesRoman", Font.PLAIN, 35));
+                g2.drawImage(title_img, 175, 100, null);
+                g2.drawString(("Press Space To Start"), SCREEN_WIDTH / 2 - 150, 450);
 
         }
 
