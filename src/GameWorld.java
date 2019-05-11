@@ -18,8 +18,11 @@ public class GameWorld {
             private BufferedImage ship_flying_img;
             private BufferedImage ship_landed_img;
             private BufferedImage moonImg;
-            private BufferedImage background;
+            private BufferedImage background_one;
+            private BufferedImage background_two;
             private BufferedImage asteroidImg;
+
+            private ArrayList<BufferedImage> moon_img_list = new ArrayList<>();
 
             public Boolean ship_death = false;
 
@@ -38,9 +41,15 @@ public class GameWorld {
              */
             ship_flying_img = read(new File("shipFlying.png"));
             ship_landed_img = read(new File("shipLanded.png"));
-            background = read(new File("Background.bmp"));
-            moonImg = read(new File("moon01.png"));
+            background_one = read(new File("Background.bmp"));
+            background_two = read(new File("Background2.bmp"));
+            moonImg = read(new File("moon.png"));
             asteroidImg = read(new File("asteroid.png"));
+
+            for (int i = 1; i <= 8; i++){
+                moon_img_list.add(read(new File("moon" + i +".png")));
+            }
+
             System.out.println("images loaded");
 
 
@@ -91,8 +100,11 @@ public class GameWorld {
 
     public void drawLayout(Graphics2D buffer){
 
-        //buffer.clearRect(0,0, GME.SCREEN_WIDTH, GME.SCREEN_HEIGHT);
-        buffer.drawImage(background, 0, 0, null);
+        if (GME.levelcount %2 == 0) {
+            buffer.drawImage(background_two, 0, 0, null);
+        }else{
+            buffer.drawImage(background_one, 0, 0, null);
+        }
     }
 
     public void place_player(){
@@ -108,12 +120,16 @@ public class GameWorld {
         Moon.reset_count();
         Random rand = new Random();
         Moon temp_moon;
+        Powerup powerup;
         Asteroid temp_asteroid;
-        for(int i = 0; i < rand.nextInt(10) + 1; i++){
-            temp_moon = new Moon(moonImg, rand.nextInt(GME.SCREEN_WIDTH - 50) + 1, rand.nextInt(GME.SCREEN_HEIGHT - 50) + 1, rand.nextInt(359));
+        for(int i = 0; i < GME.levelcount + rand.nextInt(GME.levelcount); i++){
+            temp_moon = new Moon(this.get_random_moon_img(), rand.nextInt(GME.SCREEN_WIDTH - 50) + 1, rand.nextInt(GME.SCREEN_HEIGHT - 50) + 1, rand.nextInt(359));
             this.addGameObject(temp_moon);
+            /*if (rand.nextInt(99) + 1  <= 1 * GME.levelcount){
+                powerup = new Powerup()
+            }*/
         }
-        for(int i = 0; i < rand.nextInt(10) + 5; i++){
+        for(int i = 0; i < GME.levelcount + rand.nextInt(GME.levelcount * 2) + 1; i++){
             temp_asteroid = new Asteroid(asteroidImg, rand.nextInt(GME.SCREEN_WIDTH - 50) + 1, rand.nextInt(GME.SCREEN_HEIGHT - 50) + 1, rand.nextInt(359));
             this.addGameObject(temp_asteroid);
         }
@@ -122,6 +138,11 @@ public class GameWorld {
 
     public BufferedImage get_ship_landed_img(){
         return this.ship_landed_img;
+    }
+
+    public BufferedImage get_random_moon_img(){
+        Random rand = new Random();
+        return this.moon_img_list.get(rand.nextInt(7));
     }
 
 

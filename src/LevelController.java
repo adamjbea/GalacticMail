@@ -22,12 +22,14 @@ public class LevelController implements KeyListener {
             if (keyPressed == accept){
                 engine.set_next_level();
                 engine.set_level_won(false);
+                GME.levelcount++;
             }
         }
         if (engine.GameOver){
             if (keyPressed == accept) {
                 engine.start_game();
                 engine.GameOver = false;
+                GME.levelcount = 1;
             }
         }
         if (!(engine.get_game_start())){

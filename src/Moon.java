@@ -42,14 +42,6 @@ public class Moon extends MovingObject {
         return this.starting_moon;
     }
 
-    public void toggle_starting_moon(){
-        if (this.starting_moon){
-            this.starting_moon = false;
-        }else{
-            this.starting_moon = true;
-        }
-    }
-
     public static int get_count(){
         return count;
     }

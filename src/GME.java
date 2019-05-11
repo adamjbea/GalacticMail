@@ -25,6 +25,7 @@ private Graphics2D buffer;
 private JFrame jf;
 
 public static int framecount = 0;
+public static int levelcount = 1;
 private Boolean level_won = false;
 private Boolean game_start = false;
 private BufferedImage title_img;
