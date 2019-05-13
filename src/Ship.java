@@ -21,8 +21,10 @@ public class Ship extends MovingObject{
     private Moon landed_moon;
     private boolean landed;
     private boolean on_starter_moon;
+    private boolean just_landed;
     private BufferedImage landedImg;
     private BufferedImage flyingImg;
+    private boolean ship_death;
 
 
     Ship(BufferedImage flyingImg, int x, int y, int angle, BufferedImage landedImg) {
@@ -96,12 +98,24 @@ public class Ship extends MovingObject{
         super.drawImage(g);
     }
 
-    public Boolean get_landed(){
+    public boolean get_landed(){
         return this.landed;
     }
 
+    public boolean get_just_landed(){return this.just_landed;}
+
+    public void set_just_landed(boolean bool){this.just_landed = bool;}
+
     public Moon get_landed_moon(){
         return this.landed_moon;
+    }
+
+    public boolean get_ship_death(){
+        return this.ship_death;
+    }
+
+    public void set_ship_death(boolean bool){
+        this.ship_death = bool;
     }
 
 

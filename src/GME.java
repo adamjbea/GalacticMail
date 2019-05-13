@@ -50,15 +50,15 @@ public static void main(String[] args) {
                         gmex.gameWorld.update();
                         gmex.CD.detect();
 
-                        if (gmex.CD.just_landed){
+                        if (gmex.player.getShip().get_just_landed()){
                                 gmex.player.add_score(100);
                         }
                         if (gmex.player.getShip().get_landed() && !(gmex.player.getShip().get_landed_moon().get_starting_moon()) && framecount % 10 == 0 && !(gmex.get_level_won())){
                                 gmex.player.score_decay();
                         }
-                        if (gmex.gameWorld.ship_death){
+                        if (gmex.player.getShip().get_ship_death()){
                                 gmex.gameWorld.place_player();
-                                gmex.gameWorld.ship_death = false;
+                                gmex.player.getShip().set_ship_death(false);
                                 gmex.player.loseLife();
                                 if (gmex.player.getLives()==0){
                                         System.out.println("made it");

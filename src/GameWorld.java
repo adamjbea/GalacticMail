@@ -72,7 +72,7 @@ public class GameWorld {
 
     public void drawWorld(Graphics2D buffer){
         this.drawLayout(buffer);
-        if (this.ship_death){
+        if (this.player.get_ship_death()){
             this.place_player();
         }
         for (int i = 0; i < worldList.size(); i++){
