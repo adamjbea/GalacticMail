@@ -21,7 +21,9 @@ public class GameWorld {
             private BufferedImage background_one;
             private BufferedImage background_two;
             private BufferedImage asteroidImg;
+            private BufferedImage powerupImg;
             private ArrayList<BufferedImage> moon_img_list = new ArrayList<>();
+            private ArrayList<BufferedImage> explosion_animation_list = new ArrayList<>();
             private ArrayList<GameObject> worldList;
 
     public GameWorld(){
@@ -40,9 +42,14 @@ public class GameWorld {
             background_two = read(new File("Background2.bmp"));
             moonImg = read(new File("moon.png"));
             asteroidImg = read(new File("asteroid.png"));
+            powerupImg = read(new File("powerUp.png"));
 
             for (int i = 1; i <= 8; i++){
                 moon_img_list.add(read(new File("moon" + i +".png")));
+            }
+
+            for (int i = 0; i <= 6; i++){
+                explosion_animation_list.add(read(new File("explosion" + i + ".png")));
             }
 
             System.out.println("images loaded");
@@ -113,23 +120,35 @@ public class GameWorld {
         Moon.reset_count();
         Random rand = new Random();
         Moon temp_moon;
-        Powerup powerup;
         Asteroid temp_asteroid;
         for(int i = 0; i < GME.levelcount + rand.nextInt(GME.levelcount); i++){
             temp_moon = new Moon(this.get_random_moon_img(), rand.nextInt(GME.SCREEN_WIDTH - 50) + 1, rand.nextInt(GME.SCREEN_HEIGHT - 50) + 1, rand.nextInt(359));
             this.addGameObject(temp_moon);
-            /*if (rand.nextInt(99) + 1  <= 1 * GME.levelcount){
-                powerup = new Powerup()
-            }*/
+           this.roll_powerup();
         }
         for(int i = 0; i < GME.levelcount + rand.nextInt(GME.levelcount * 2) + 1; i++){
             temp_asteroid = new Asteroid(asteroidImg, rand.nextInt(GME.SCREEN_WIDTH - 50) + 1, rand.nextInt(GME.SCREEN_HEIGHT - 50) + 1, rand.nextInt(359));
             this.addGameObject(temp_asteroid);
+           this.roll_powerup();
         }
     }
     public BufferedImage get_random_moon_img(){
         Random rand = new Random();
         return this.moon_img_list.get(rand.nextInt(7));
+    }
+
+    public void roll_powerup(){
+        Random rand = new Random();
+        Powerup powerup;
+        if (rand.nextInt(99) + 1  <= 1 * GME.levelcount){
+            powerup = new Powerup(powerupImg, rand.nextInt(GME.SCREEN_WIDTH - 50) + 1, rand.nextInt(GME.SCREEN_HEIGHT - 50) + 1, rand.nextInt(359));
+            this.addGameObject(powerup);
+        }
+    }
+
+    public void add_explosion(int x, int y){
+        Explosion explosion = new Explosion(explosion_animation_list, x, y, GME.framecount);
+        this.addGameObject(explosion);
     }
 
 

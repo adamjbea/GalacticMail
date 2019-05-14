@@ -42,6 +42,7 @@ public abstract class GameObject {
     protected BufferedImage getImg(){
         return this.img;
     }
+    protected void setImg(BufferedImage img){this.img = img;}
 
     protected Boolean exists(){
         return this.exists;

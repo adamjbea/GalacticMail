@@ -57,4 +57,8 @@ public class Player {
         return this.score;
     }
 
+    public void gain_life(){
+        this.lives++;
+    }
+
 }
