@@ -20,7 +20,7 @@ public class CollisionDetector {
     public void detect(){
         this.player.getShip().set_just_landed(false);
         Ship ship = this.gameWorld.getShip();
-        Rectangle ship_box = new Rectangle(ship.getX(), ship.getY(), ship.getImg().getWidth(), ship.getImg().getHeight());
+        Rectangle ship_box = new Rectangle(ship.getX() + 5, ship.getY() + 17, ship.getImg().getWidth() - 11, ship.getImg().getHeight()/2);
         Rectangle obj_box;
         for (GameObject o : gameWorld.getWorldList()){
             if (!(o instanceof Ship)){
