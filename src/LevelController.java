@@ -3,11 +3,11 @@ import java.awt.event.KeyListener;
 
 public class LevelController implements KeyListener {
 
-    GME engine;
+    private ScreenManager sm;
     private final int accept;
 
-    public LevelController(GME engine, int accept){
-        this.engine = engine;
+    public LevelController(ScreenManager sm, int accept){
+        this.sm = sm;
         this.accept = accept;
     }
 
@@ -18,24 +18,24 @@ public class LevelController implements KeyListener {
     @Override
     public void keyPressed(KeyEvent ke) {
         int keyPressed = ke.getKeyCode();
-        if (engine.get_level_won()){
+        if (sm.get_level_won()){
             if (keyPressed == accept){
-                engine.set_next_level();
-                engine.set_level_won(false);
+                sm.set_next_level();
+                sm.untoggle_level_won();
                 GME.levelcount++;
             }
         }
-        if (engine.GameOver){
+        if (sm.get_game_over()){
             if (keyPressed == accept) {
-                engine.start_game();
-                engine.GameOver = false;
+                sm.start_game();
+                sm.untoggle_game_over();
                 GME.levelcount = 1;
             }
         }
-        if (!(engine.get_game_start())){
+        if (!(sm.get_game_start())){
             if (keyPressed == accept) {
-                engine.start_game();
-                engine.set_game_start(true);
+                sm.start_game();
+                sm.toggle_game_start();
             }
         }
 

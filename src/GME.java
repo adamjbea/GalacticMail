@@ -26,16 +26,12 @@ private JFrame jf;
 
 public static int framecount = 0;
 public static int levelcount = 1;
-private Boolean level_won = false;
-private Boolean game_start = false;
-private BufferedImage title_img;
-
-
-
 
 public boolean GameOver = false;
 
 private CollisionDetector CD;
+private ScreenManager SM;
+private PlayerManager PM;
 //just used for bullet range but could be used for enemy placement and game timeline effects
 
 
@@ -49,26 +45,7 @@ public static void main(String[] args) {
                 while (true) {
                         gmex.gameWorld.update();
                         gmex.CD.detect();
-
-                        if (gmex.player.getShip().get_just_landed()){
-                                gmex.player.add_score(100);
-                        }
-                        if (gmex.player.getShip().get_landed() && !(gmex.player.getShip().get_landed_moon().get_starting_moon()) && framecount % 10 == 0 && !(gmex.get_level_won())){
-                                gmex.player.score_decay();
-                        }
-                        if (gmex.player.getShip().get_ship_death()){
-                                gmex.gameWorld.place_player();
-                                gmex.player.getShip().set_ship_death(false);
-                                gmex.player.loseLife();
-                                if (gmex.player.getLives()==0){
-                                        System.out.println("made it");
-                                        gmex.GameOver = true;
-                                        System.out.println("Game Over: " + gmex.GameOver);
-                                }
-                        }
-                        if (Moon.get_count() == 1 && gmex.player.getShip().get_landed()){
-                                gmex.level_won = true;
-                        }
+                        gmex.PM.update();
                         gmex.repaint();
                         framecount++;
                         Thread.sleep(1000 / 144);
@@ -86,10 +63,12 @@ private void init() {
         this.gameWorld.set_up_level();
         player = new Player(gameWorld.getShip());
 
-        CD = new CollisionDetector(gameWorld, player);
+        CD = new CollisionDetector(gameWorld, player, this);
+        SM = new ScreenManager(this, player);
+        PM = new PlayerManager(player, gameWorld, this);
 
         ShipControl sc = new ShipControl(player.getShip(), KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT, KeyEvent.VK_SPACE);
-        LevelController kc = new LevelController(this, KeyEvent.VK_SPACE);
+        LevelController kc = new LevelController(SM, KeyEvent.VK_SPACE);
         this.jf.setLayout(new BorderLayout());
         this.jf.add(this);
 
@@ -106,22 +85,6 @@ private void init() {
         this.setBackground(Color.black);
         this.setForeground(Color.WHITE);
 
-        try {
-                BufferedImage tmp;
-                System.out.println(System.getProperty("user.dir"));
-                /*
-                 * note class loaders read files from the out folder (build folder in netbeans) and not the
-                 * current working directory.
-                 */
-                title_img = read(new File("title.png"));
-                System.out.println("images loaded");
-
-
-        } catch (IOException ex) {
-                System.out.println("yup cant read that shit");
-                System.out.println(ex.getMessage());
-        }
-
         }
 
 @Override
@@ -134,52 +97,11 @@ public void paintComponent(Graphics g) {
         gameWorld.drawWorld(buffer);
         g2.drawImage(world, 0, 0, null);
 
-        if (!(this.level_won) && this.game_start) {
-                for (int i = 0; i < player.getLives(); i++){
-                        g2.drawImage(gameWorld.get_ship_landed_img(), 20 + 48*i, 20, null);
-                }
-                g2.setFont(new Font("TimesRoman", Font.PLAIN, 35));
-                g2.drawString(("Score: $" + this.player.get_score()), SCREEN_WIDTH / 2 - 75, 50);
-        }
-        if(this.level_won){
-                g2.setFont(new Font("TimesRoman", Font.PLAIN, 50));
-                g2.drawString(("DELIVERY COMPLETE"), SCREEN_WIDTH / 4 - 45, 300);
-                g2.setFont(new Font("TimesRoman", Font.PLAIN, 25));
-                g2.drawString(("Press Space To Continue"), SCREEN_WIDTH / 4 + 75, 350);
-
-
-        }
-        if (this.GameOver){
-                g2.setFont(new Font("TimesRoman", Font.PLAIN, 50));
-                g2.drawString(("GAME OVER"), SCREEN_WIDTH / 4 + 50, 300);
-                g2.setFont(new Font("TimesRoman", Font.PLAIN, 25));
-                g2.drawString(("Press Space To Restart"), SCREEN_WIDTH / 4 + 75, 350);
-        }
-
-        if (!(game_start)){
-                g2.setFont(new Font("TimesRoman", Font.PLAIN, 35));
-                g2.drawImage(title_img, 175, 100, null);
-                g2.drawString(("Press Space To Start"), SCREEN_WIDTH / 2 - 150, 450);
-
-        }
-
-
-
-
-
-        }
-
- public Boolean get_level_won(){
-
-        return this.level_won;
-
+       SM.draw_screen(g2);
 }
 
-public void set_level_won(Boolean bool){
+ public Boolean get_level_won(){ return this.SM.get_level_won(); }
 
-        this.level_won = bool;
-
-}
 
 public void set_next_level(){
         this.gameWorld.getWorldList().clear();
@@ -193,13 +115,20 @@ public void start_game(){
         this.set_next_level();
 }
 
-public Boolean get_game_start(){
-        return this.game_start;
+public boolean get_game_over(){
+        return this.SM.get_game_over();
 }
 
-public void set_game_start(Boolean bool){
-        this.game_start = bool;
+public void toggle_game_over(){
+        this.SM.toggle_game_over();
 }
+
+public void toggle_level_won(){
+        this.SM.toggle_level_won();
+}
+
+public boolean get_game_start(){return this.SM.get_game_start();}
+
 
 }
 

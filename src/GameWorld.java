@@ -21,12 +21,7 @@ public class GameWorld {
             private BufferedImage background_one;
             private BufferedImage background_two;
             private BufferedImage asteroidImg;
-
             private ArrayList<BufferedImage> moon_img_list = new ArrayList<>();
-
-            public Boolean ship_death = false;
-
-
             private ArrayList<GameObject> worldList;
 
     public GameWorld(){
@@ -57,8 +52,6 @@ public class GameWorld {
             System.out.println("yup cant read that shit");
             System.out.println(ex.getMessage());
         }
-
-
 
         player = new Ship(ship_flying_img, GME.SCREEN_WIDTH/2 - 24, GME.SCREEN_HEIGHT/2 - 24, 0, ship_landed_img);
 
@@ -134,12 +127,6 @@ public class GameWorld {
             this.addGameObject(temp_asteroid);
         }
     }
-
-
-    public BufferedImage get_ship_landed_img(){
-        return this.ship_landed_img;
-    }
-
     public BufferedImage get_random_moon_img(){
         Random rand = new Random();
         return this.moon_img_list.get(rand.nextInt(7));

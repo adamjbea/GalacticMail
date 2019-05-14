@@ -4,9 +4,11 @@ public class CollisionDetector {
 
     private GameWorld gameWorld;
     private Player player;
-    public CollisionDetector(GameWorld gameWorld, Player player){
+    private GME gme;
+    public CollisionDetector(GameWorld gameWorld, Player player, GME gme){
         this.gameWorld = gameWorld;
         this.player = player;
+        this.gme = gme;
     }
 
     public void detect(){
@@ -18,7 +20,7 @@ public class CollisionDetector {
             if (!(o instanceof Ship)){
                 obj_box = new Rectangle(o.getX(), o.getY(), o.getImg().getWidth(), o.getImg().getHeight());
                 if (ship_box.intersects(obj_box)) {
-                    if (!(ship.get_landed())) {
+                    if (!(ship.get_landed()) && this.gme.get_game_start()) {
                         if (o instanceof Moon && o.exists) {
                             ship.set_landed_moon((Moon) o);
                             this.player.getShip().set_just_landed(true);
