@@ -1,4 +1,4 @@
-public class PlayerManager {
+public class PlayerManager extends Manager {
 
     private GME gme;
     private Player player;

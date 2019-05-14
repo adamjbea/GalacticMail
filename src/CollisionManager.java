@@ -3,7 +3,7 @@ import javafx.util.Pair;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class CollisionDetector {
+public class CollisionManager extends Manager {
 
     private GameWorld gameWorld;
     private Player player;
@@ -11,13 +11,13 @@ public class CollisionDetector {
     private int explosion_x = 0;
     private int explosion_y = 0;
     private boolean explosion_occured = false;
-    public CollisionDetector(GameWorld gameWorld, Player player, GME gme){
+    public CollisionManager(GameWorld gameWorld, Player player, GME gme){
         this.gameWorld = gameWorld;
         this.player = player;
         this.gme = gme;
     }
 
-    public void detect(){
+    public void update(){
         this.player.getShip().set_just_landed(false);
         Ship ship = this.gameWorld.getShip();
         Rectangle ship_box = new Rectangle(ship.getX() + 5, ship.getY() + 17, ship.getImg().getWidth() - 11, ship.getImg().getHeight()/2);

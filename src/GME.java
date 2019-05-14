@@ -29,7 +29,7 @@ public static int levelcount = 1;
 
 public boolean GameOver = false;
 
-private CollisionDetector CD;
+private CollisionManager CD;
 private ScreenManager SM;
 private PlayerManager PM;
 //just used for bullet range but could be used for enemy placement and game timeline effects
@@ -43,11 +43,11 @@ public static void main(String[] args) {
         try {
 
                 while (true) {
+                        framecount++;
                         gmex.gameWorld.update();
-                        gmex.CD.detect();
+                        gmex.CD.update();
                         gmex.PM.update();
                         gmex.repaint();
-                        framecount++;
                         Thread.sleep(1000 / 144);
         }
         } catch (InterruptedException ignored) {
@@ -63,7 +63,7 @@ private void init() {
         this.gameWorld.set_up_level();
         player = new Player(gameWorld.getShip());
 
-        CD = new CollisionDetector(gameWorld, player, this);
+        CD = new CollisionManager(gameWorld, player, this);
         SM = new ScreenManager(this, player);
         PM = new PlayerManager(player, gameWorld, this);
 
