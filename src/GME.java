@@ -27,7 +27,7 @@ private JFrame jf;
 public static int framecount = 0;
 public static int levelcount = 1;
 
-public boolean GameOver = false;
+
 
 private CollisionManager CD;
 private ScreenManager SM;

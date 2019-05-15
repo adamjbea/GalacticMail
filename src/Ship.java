@@ -31,8 +31,6 @@ public class Ship extends MovingObject{
         super(flyingImg, x, y, angle);
         this.landedImg = landedImg;
         this.flyingImg = flyingImg;
-
-
         this.speed = 2;
         this.rotationalSpeed = 1;
 

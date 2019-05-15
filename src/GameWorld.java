@@ -36,20 +36,20 @@ public class GameWorld {
              * note class loaders read files from the out folder (build folder in netbeans) and not the
              * current working directory.
              */
-            ship_flying_img = read(new File("shipFlying.png"));
-            ship_landed_img = read(new File("shipLanded.png"));
-            background_one = read(new File("Background.bmp"));
-            background_two = read(new File("Background2.bmp"));
-            moonImg = read(new File("moon.png"));
-            asteroidImg = read(new File("asteroid.png"));
-            powerupImg = read(new File("powerUp.png"));
+            ship_flying_img = ImageIO.read(getClass().getResource("/shipFlying.png"));
+            ship_landed_img = ImageIO.read(getClass().getResource("/shipLanded.png"));
+            background_one = ImageIO.read(getClass().getResource("/Background.bmp"));
+            background_two = ImageIO.read(getClass().getResource("/Background2.bmp"));
+            moonImg = ImageIO.read(getClass().getResource("/moon.png"));
+            asteroidImg = ImageIO.read(getClass().getResource("/asteroid.png"));
+            powerupImg = ImageIO.read(getClass().getResource("/powerUp.png"));
 
             for (int i = 1; i <= 8; i++){
-                moon_img_list.add(read(new File("moon" + i +".png")));
+                moon_img_list.add(ImageIO.read(getClass().getResource("/moon" + i +".png")));
             }
 
             for (int i = 0; i <= 6; i++){
-                explosion_animation_list.add(read(new File("explosion" + i + ".png")));
+                explosion_animation_list.add(ImageIO.read(getClass().getResource("/explosion" + i + ".png")));
             }
 
             System.out.println("images loaded");

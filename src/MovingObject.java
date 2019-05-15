@@ -12,7 +12,7 @@ public abstract class MovingObject extends GameObject {
     protected int vy = 0;
     protected int speed = 0;
     protected int rotationalSpeed = 0;
-    protected int rads;
+
 
     public MovingObject(BufferedImage img, int x, int y, int angle){
         super(x, y, angle, img);

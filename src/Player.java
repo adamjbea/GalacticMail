@@ -1,11 +1,5 @@
 
 
-import java.awt.image.*;
-import java.io.File;
-import java.io.IOException;
-
-import static javax.imageio.ImageIO.read;
-
 public class Player {
 
     private int lives;

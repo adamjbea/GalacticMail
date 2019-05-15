@@ -1,3 +1,4 @@
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -28,8 +29,8 @@ public class ScreenManager {
              * note class loaders read files from the out folder (build folder in netbeans) and not the
              * current working directory.
              */
-            title_img = read(new File("title.png"));
-            ship_landed_img = read(new File("shipLanded.png"));
+            title_img = ImageIO.read(getClass().getResource("/title.png"));
+            ship_landed_img = ImageIO.read(getClass().getResource("/shipLanded.png"));
             System.out.println("images loaded");
 
 
@@ -84,10 +85,6 @@ public class ScreenManager {
 
     public void toggle_game_start(){
         this.game_start = true;
-    }
-
-    public void untoggle_game_start(){
-        this.game_start = false;
     }
 
     public void toggle_level_won(){
