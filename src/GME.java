@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static javax.imageio.ImageIO.read;
 
@@ -29,11 +30,11 @@ public static int levelcount = 1;
 
 
 
-private CollisionManager CD;
-private ScreenManager SM;
+private CollisionManager CM;
 private PlayerManager PM;
-//just used for bullet range but could be used for enemy placement and game timeline effects
+private ArrayList<Manager> manager_list = new ArrayList<>();
 
+private StateSelector SS;
 
 
 public static void main(String[] args) {
@@ -44,9 +45,7 @@ public static void main(String[] args) {
 
                 while (true) {
                         framecount++;
-                        gmex.gameWorld.update();
-                        gmex.CD.update();
-                        gmex.PM.update();
+                        gmex.update();
                         gmex.repaint();
                         Thread.sleep(1000 / 144);
         }
@@ -63,12 +62,17 @@ private void init() {
         this.gameWorld.set_up_level();
         player = new Player(gameWorld.getShip());
 
-        CD = new CollisionManager(gameWorld, player, this);
-        SM = new ScreenManager(this, player);
+        CM = new CollisionManager(gameWorld, player, this);
         PM = new PlayerManager(player, gameWorld, this);
 
+        manager_list.add(gameWorld);
+        manager_list.add(CM);
+        manager_list.add(PM);
+
+        SS = new StateSelector(this, player);
+
         ShipControl sc = new ShipControl(player.getShip(), KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT, KeyEvent.VK_SPACE);
-        LevelController kc = new LevelController(SM, KeyEvent.VK_SPACE);
+        LevelController kc = new LevelController(SS, KeyEvent.VK_SPACE);
         this.jf.setLayout(new BorderLayout());
         this.jf.add(this);
 
@@ -97,10 +101,10 @@ public void paintComponent(Graphics g) {
         gameWorld.drawWorld(buffer);
         g2.drawImage(world, 0, 0, null);
 
-       SM.draw_screen(g2);
+       SS.draw_screen(g2);
 }
 
- public Boolean get_level_won(){ return this.SM.get_level_won(); }
+ public Boolean get_level_won(){ return this.SS.get_level_won(); }
 
 
 public void set_next_level(){
@@ -116,18 +120,24 @@ public void start_game(){
 }
 
 public boolean get_game_over(){
-        return this.SM.get_game_over();
+        return this.SS.get_game_over();
 }
 
 public void toggle_game_over(){
-        this.SM.toggle_game_over();
+        this.SS.toggle_game_over();
 }
 
 public void toggle_level_won(){
-        this.SM.toggle_level_won();
+        this.SS.toggle_level_won();
 }
 
-public boolean get_game_start(){return this.SM.get_game_start();}
+public boolean get_game_start(){return this.SS.get_game_start();}
+
+public void update(){
+        for (Manager m : manager_list){
+                m.update();
+        }
+}
 
 
 }

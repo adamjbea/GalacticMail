@@ -55,4 +55,16 @@ public class Player {
         this.lives++;
     }
 
+    public void reduce_score(int amount){
+        if (this.get_score() - amount < 0){
+            this.set_score(0);
+        }else {
+            this.set_score(this.get_score() - amount);
+        }
+    }
+
+    public void set_score(int amount){
+        this.score = amount;
+    }
+
 }

@@ -21,10 +21,9 @@ public class PlayerManager extends Manager {
             this.world.place_player();
             this.player.getShip().set_ship_death(false);
             this.player.loseLife();
+            this.player.reduce_score(100);
             if (this.player.getLives()==0){
-                System.out.println("made it");
                 this.gme.toggle_game_over();
-                System.out.println("Game Over: " + this.gme.get_game_over());
             }
         }
         if (Moon.get_count() == 1 && this.player.getShip().get_landed()){

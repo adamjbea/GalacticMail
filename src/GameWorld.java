@@ -12,7 +12,7 @@ import java.util.Random;
 
 import static javax.imageio.ImageIO.read;
 
-public class GameWorld {
+public class GameWorld extends Manager {
 
             private Ship player;
             private BufferedImage ship_flying_img;
@@ -140,7 +140,7 @@ public class GameWorld {
     public void roll_powerup(){
         Random rand = new Random();
         Powerup powerup;
-        if (rand.nextInt(99) + 1  <= 1 * GME.levelcount){
+        if (rand.nextInt(99) + 1  <= 2 * GME.levelcount){
             powerup = new Powerup(powerupImg, rand.nextInt(GME.SCREEN_WIDTH - 50) + 1, rand.nextInt(GME.SCREEN_HEIGHT - 50) + 1, rand.nextInt(359));
             this.addGameObject(powerup);
         }

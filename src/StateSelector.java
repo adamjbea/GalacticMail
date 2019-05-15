@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import static javax.imageio.ImageIO.read;
 
-public class ScreenManager {
+public class StateSelector {
 
     private Player player;
     private GME gme;
@@ -18,7 +18,7 @@ public class ScreenManager {
     private BufferedImage ship_landed_img;
     private BufferedImage title_img;
 
-    public ScreenManager(GME gme, Player player){
+    public StateSelector(GME gme, Player player){
 
         this.player = player;
         this.gme = gme;

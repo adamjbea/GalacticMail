@@ -10,7 +10,7 @@ public class CollisionManager extends Manager {
     private GME gme;
     private int explosion_x = 0;
     private int explosion_y = 0;
-    private boolean explosion_occured = false;
+    private boolean explosion_occurred = false;
     public CollisionManager(GameWorld gameWorld, Player player, GME gme){
         this.gameWorld = gameWorld;
         this.player = player;
@@ -34,7 +34,7 @@ public class CollisionManager extends Manager {
                         if (o instanceof Asteroid) {
                             o.setExists(false);
                             this.player.getShip().set_ship_death(true);
-                            this.explosion_occured = true;
+                            this.explosion_occurred = true;
                             this.explosion_x = this.player.getShip().getX();
                             this.explosion_y = this.player.getShip().getY();
                         }
@@ -48,9 +48,9 @@ public class CollisionManager extends Manager {
                 }
             }
         }
-        if (this.explosion_occured){
+        if (this.explosion_occurred){
             this.gameWorld.add_explosion(explosion_x, explosion_y);
-            this.explosion_occured = false;
+            this.explosion_occurred = false;
             this.explosion_x = 0;
             this.explosion_y = 0;
         }
